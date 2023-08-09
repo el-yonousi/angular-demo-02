@@ -1,0 +1,43 @@
+<table ngClass=" table-auto border-separate border-spacing-2 border border-slate-500">
+    <caption ngClass="caption-top font-bold pb-4 text-2xl" [innerHTML]="hotelName">
+    </caption>
+    <thead>
+        <tr>
+            <th ngClass="whitespace-nowrap text-start border border-slate-600 px-1.5 py-1">Room Number</th>
+            <th ngClass="whitespace-nowrap text-start border border-slate-600 px-1.5 py-1">Room Photo</th>
+            <th ngClass="whitespace-nowrap text-start border border-slate-600 px-1.5 py-1">Room Type</th>
+            <th ngClass="whitespace-nowrap text-start border border-slate-600 px-1.5 py-1">Room Price</th>
+            <th ngClass="whitespace-nowrap text-start border border-slate-600 px-1.5 py-1">Room Amenities</th>
+            <th ngClass="whitespace-nowrap text-start border border-slate-600 px-1.5 py-1">Checkin Time</th>
+            <th ngClass="whitespace-nowrap text-start border border-slate-600 px-1.5 py-1">Checkout Time</th>
+            <th ngClass="whitespace-nowrap text-start border border-slate-600 px-1.5 py-1">Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let room of rooms; let e = even; let o = odd; let i = index"
+            [ngClass]="[e ? 'even' : 'odd']">
+            <td ngClass="whitespace-nowrap border border-slate-700 px-1.5 py-1"><span
+                    [innerText]="room.roomNumber"></span></td>
+            <td ngClass="whitespace-nowrap border border-slate-700 px-1.5 py-1" [align]="'center'">
+                <img ngClass="object-cover w-10 h-10 rounded-full" [src]="room.photos" [alt]="room.roomType">
+            </td>
+            <td ngClass="whitespace-nowrap border border-slate-700 px-1.5 py-1"><span
+                    [innerText]="room.roomType | titlecase"></span></td>
+            <td ngClass="whitespace-nowrap border border-slate-700 px-1.5 py-1"><span
+                    [innerText]="room.price | currency:'MAD'"
+                    [ngStyle]="{color: room.price >= 2500 ? 'rgb(20 184 166)' : 'rgb(234 179 8)'}"></span></td>
+            <td ngClass="whitespace-nowrap border border-slate-700 px-1.5 py-1 text-ellipsis overflow-x-hidden max-w-[180px]"
+                [title]="room.amenities"><span [innerText]="room.amenities"></span></td>
+            <td ngClass="whitespace-nowrap border border-slate-700 px-1.5 py-1 text-ellipsis overflow-x-hidden max-w-[160px]"
+                [title]="room.checkinTime"><span [innerText]="room.checkinTime | date:'EEEE, d-MMMM-y'"></span>
+            </td>
+            <td ngClass="whitespace-nowrap border border-slate-700 px-1.5 py-1 text-ellipsis overflow-x-hidden max-w-[160px]"
+                [title]="room.checkoutTime"><span
+                    [innerText]="room.checkoutTime | date:'EEEE, d-MMMM-y'"></span></td>
+            <td ngClass="whitespace-nowrap border border-slate-700 px-1.5 py-1 text-ellipsis overflow-x-hidden max-w-[160px]"
+                [title]="room.rating"><span
+                    [innerText]="room.rating | number:'1.0-0'"></span></td>
+        </tr>
+    </tbody>
+    <tfoot></tfoot>
+</table>

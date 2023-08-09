@@ -9,4 +9,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Angular Demo 02';
+
+  role = 'admin';
 }

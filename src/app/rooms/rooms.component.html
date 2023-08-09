@@ -1,45 +1,14 @@
-<div class="flex gap-2 flex-col">
-    <span ngClass="text-red-500" [innerHTML]="hotelName">
-    </span>
-    <span>Number of Rooms Available</span>
+<div ngClass="flex flex-col gap-4">
+    <div *ngIf="roomList" ngClass="overflow-auto">
+        <app-rooms-list [hotelName]="hotelName" [rooms]="roomList"></app-rooms-list>
 
-
-    Rooms List
-    <div *ngIf="roomList">
-        <table>
-            <thead>
-                <tr>
-                    <th>Even/Odd</th>
-                    <th>Room Number</th>
-                    <th>Room Photo</th>
-                    <th>Room Type</th>
-                    <th>Room Price</th>
-                    <th>Room Amenities</th>
-                    <th>Checkin Time</th>
-                    <th>Checkout Time</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let room of roomList; let e = even; let o = odd; let i = index">
-                    <td><span [innerText]="e? 'Even' : 'Odd'"></span></td>
-                    <td><span [innerText]="room.roomNumber"></span></td>
-                    <td ngClass="max-w-[40px] min-w-[40px] w-[40px] max-h-[40px] min-h-[40px] h-[40px]">
-                        <img ngClass="object-cover w-[40px] h-[40px] rounded-full" [src]="room.photos"
-                            [alt]="room.roomType">
-                    </td>
-                    <td><span [innerText]="room.roomType"></span></td>
-                    <td><span [innerText]="room.price"></span></td>
-                    <td><span [innerText]="room.amenities"></span></td>
-                    <td><span [innerText]="room.checkinTime"></span></td>
-                    <td><span [innerText]="room.checkoutTime"></span></td>
-                </tr>
-            </tbody>
-            <tfoot></tfoot>
-        </table>
+        <button [disabled]="numberOfRooms < 10 || numberOfRooms >= 15"
+            ngClass="disabled:text-slate-700 disabled:cursor-not-allowed capitalize border px-2 py-1 w-fit mt-10"
+            (click)="reserveRoom()" [innerText]="'reserve room'">
+        </button>
     </div>
 
-    <button [disabled]="numberOfRooms < 10 || numberOfRooms >= 15"
-        ngClass="disabled:text-slate-700 disabled:cursor-not-allowed capitalize border px-2 py-1 w-fit"
-        (click)="reserveRoom()" [innerText]="'reserve room'">
-    </button>
+    <div ngClass="max-w-6xl overflow-auto">
+        <pre>{{ roomList | json }}</pre>
+    </div>
 </div>

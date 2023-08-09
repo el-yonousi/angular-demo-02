@@ -1,0 +1,11 @@
+.odd {
+    td {
+        @apply hover:border-pink-500 transition-all duration-500 ease-in-out;
+    }
+}
+
+.even {
+    td {
+        @apply hover:border-violet-500 transition-all duration-500 ease-in-out;
+    }
+}
