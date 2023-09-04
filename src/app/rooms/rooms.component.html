@@ -1,14 +1,51 @@
-<div ngClass="flex flex-col gap-4">
-    <div *ngIf="roomList" ngClass="overflow-auto">
-        <app-rooms-list [hotelName]="hotelName" [rooms]="roomList"></app-rooms-list>
-
+<app-container>
+    <button (click)="changeMode()" ngClass="text-center mx-auto">change color mode</button>
+    <div *ngIf="roomList" ngClass="flex flex-col gap-4">
+        <div ngClass="overflow-auto">
+            <app-rooms-list [hotelName]="hotelName" [rooms]="roomList"
+                (selectedRoom)="selectRoom($event)"></app-rooms-list>
+        </div>
         <button [disabled]="numberOfRooms < 10 || numberOfRooms >= 15"
-            ngClass="disabled:text-slate-700 disabled:cursor-not-allowed capitalize border px-2 py-1 w-fit mt-10"
+            ngClass="disabled:text-slate-700 disabled:cursor-not-allowed capitalize border px-2 py-1 w-fit mt-5"
             (click)="reserveRoom()" [innerText]="'reserve room'">
         </button>
-    </div>
 
-    <div ngClass="max-w-6xl overflow-auto">
-        <pre>{{ roomList | json }}</pre>
+        <dialog #dialog *ngIf="selectedRoom" [open]="selectedRoom"
+            ngClass="backdrop:bg-slate-950 backdrop:bg-opacity-10 backdrop:backdrop-blur-md bg-slate-950 max-w-md w-full rounded px-4 py-3">
+            <div ngClass="flex justify-end">
+                <button (click)="dialog.close()" ngClass="text-red-500 font-bold">X</button>
+            </div>
+            <div ngClass="rounded">
+                <div ngClass="flex gap-2">
+                    <img ngClass="w-full h-72 object-cover" [src]="selectedRoom.photos" [alt]="selectedRoom.roomType">
+                </div>
+                <div ngClass="flex gap-2"><span>Number:</span>
+                    <p [innerText]="selectedRoom.roomNumber"></p>
+                </div>
+                <div ngClass="flex gap-2"><span>Type:</span>
+                    <p [innerText]="selectedRoom.roomType"></p>
+                </div>
+                <div ngClass="flex gap-2"><span>Amenities:</span>
+                    <p [innerText]="selectedRoom.amenities"></p>
+                </div>
+                <div ngClass="flex gap-2"><span>Price:</span>
+                    <p [innerText]="selectedRoom.price"></p>
+                </div>
+                <div ngClass="flex gap-2"><span>Check in:</span>
+                    <p [innerText]="selectedRoom.checkinTime | date"></p>
+                </div>
+                <div ngClass="flex gap-2"><span>Check out:</span>
+                    <p [innerText]="selectedRoom.checkoutTime | date"></p>
+                </div>
+                <div ngClass="flex gap-2"><span>Rating:</span>
+                    <p [innerText]="selectedRoom.rating"></p>
+                </div>
+            </div>
+        </dialog>
+
+
+        <!-- <div ngClass="max-w-6xl overflow-auto">
+            <pre>{{ roomList | json }}</pre>
+        </div> -->
     </div>
-</div>
+</app-container>

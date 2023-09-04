@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, Input, OnInit } from '@angular/core';
 import { Room, RoomList } from './rooms';
 
 @Component({
@@ -6,10 +6,11 @@ import { Room, RoomList } from './rooms';
   styleUrls: ['./rooms.component.scss'],
   templateUrl: './rooms.component.html',
 })
-export class RoomsComponent implements OnInit {
+export class RoomsComponent implements OnInit, DoCheck {
   
   hotelName: string = '<span class="text-red-500">Helton Hotel</span>'
   numberOfRooms: number = 10
+  selectedRoom!: RoomList
   
   rooms: Room = {
     totalRooms: 20,
@@ -53,14 +54,29 @@ export class RoomsComponent implements OnInit {
   ngOnInit(): void {
     console.log('%c on init life cycle', 'color:red;background:yellow;padding:2px 4px;font-size:medium;');
   }
+  
+  ngDoCheck(): void {
+    console.log('on do check is call');
+  }
+
+  changeMode() {
+    const colorSheme = document.querySelector('html')
+    if (colorSheme?.style.colorScheme === 'light') {
+      colorSheme!.style.colorScheme = 'dark'
+    } else {
+      colorSheme!.style.colorScheme = "light"
+    }
+
+    this.hotelName = `<span class="text-red-500">Helton Hotel</span> ${colorSheme!.style.colorScheme}`
+  }
 
   reserveRoom = () => {
     const checkin = new Date(this.roomList[this.roomList.length - 1].checkoutTime)
-    
+
     const checkoutTime = new Date(checkin);
     checkoutTime.setDate(checkoutTime.getDate() + 5);
-    
-    this.roomList.push({
+
+    const room: RoomList = {
       roomNumber: this.roomList.length + 1,
       roomType: 'Deluxe Room',
       amenities: 'Air Conditioner, Free Wi-Fi, TV, Bathroom, Kitchen',
@@ -69,6 +85,12 @@ export class RoomsComponent implements OnInit {
       checkinTime: checkin,
       checkoutTime: checkoutTime,
       rating: 4.8
-    },)
+    }
+
+    this.roomList = [...this.roomList, room]
+  }
+
+  selectRoom(room: RoomList) {
+    this.selectedRoom = room
   }
 }

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { RoomsComponent } from './rooms/rooms.component';
 import { ContainerComponent } from './container/container.component';
 import { RoomsListComponent } from './rooms-list/rooms-list.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { RoomsListComponent } from './rooms-list/rooms-list.component';
     RoomsComponent,
     ContainerComponent,
     RoomsListComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
