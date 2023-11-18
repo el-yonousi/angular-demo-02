@@ -1,12 +1,23 @@
-<div [ngSwitch]="role">
-    <app-container *ngSwitchCase="'user'">Welcome User</app-container>
-    <div *ngSwitchCase="'admin'">
-        <app-container><p>Welcome to Admin Page</p></app-container>
-        <app-rooms></app-rooms>
+<app-layout>
+    <app-header></app-header>
+    <app-nav></app-nav>
+    <app-footer></app-footer>
+    <app-ads></app-ads>
+    <div [ngSwitch]="role">
+        <div *ngSwitchCase="'user'">Welcome User</div>
+        <div *ngSwitchCase="'admin'">
+            <app-rooms></app-rooms>
+        </div>
+        <div *ngSwitchDefault>
+            Welcome to our website make sure to login
+        </div>
     </div>
-    <app-container *ngSwitchDefault>
-        Welcome to our website make sure to login
-    </app-container>
+    <div ngClass="mt-4" #name></div>
+</app-layout>
+
+
+<div>
+    <ng-template #user></ng-template>
 </div>
 
 <router-outlet></router-outlet>

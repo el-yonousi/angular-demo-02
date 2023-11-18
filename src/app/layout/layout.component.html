@@ -1,0 +1,15 @@
+<div ngClass="flex flex-col">
+    <div ngClass="sticky top-0">
+        <ng-content select="app-nav"></ng-content>
+    </div>
+    <ng-content select="app-header"></ng-content>
+    <app-container class="flex md:flex-row flex-col w-full">
+        <div ngClass="md:w-[70vw]">
+            <ng-content></ng-content>
+        </div>
+        <div ngClass="md:w-[30vw]">
+            <ng-content select="app-ads"></ng-content>
+        </div>
+    </app-container>
+    <ng-content select="app-footer"></ng-content>
+</div>

@@ -5,5 +5,11 @@
 
 html,
 body {
-	color-scheme: dark;
+	color-scheme: light dark;
+	@apply text-xl;
+}
+
+body.dialog-open {
+    overflow: hidden;
+    position: fixed;
 }

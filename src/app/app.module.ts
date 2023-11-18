@@ -3,10 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RoomsComponent } from './rooms/rooms.component';
 import { ContainerComponent } from './container/container.component';
-import { RoomsListComponent } from './rooms-list/rooms-list.component';
+import { NavComponent } from './nav/nav.component';
+import { EmployeeComponent } from './employee/employee.component';
+import { LayoutComponent } from './layout/layout.component';
+import { AdsComponent } from './ads/ads.component';
+import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { RoomsComponent } from './rooms/rooms/rooms.component';
+import { RoomsListComponent } from './rooms/rooms-list/rooms-list.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +19,11 @@ import { HeaderComponent } from './header/header.component';
     RoomsComponent,
     ContainerComponent,
     RoomsListComponent,
+    NavComponent,
+    EmployeeComponent,
+    LayoutComponent,
+    AdsComponent,
+    FooterComponent,
     HeaderComponent,
   ],
   imports: [

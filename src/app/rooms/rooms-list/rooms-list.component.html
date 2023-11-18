@@ -39,7 +39,15 @@
                 [title]="room.checkoutTime"><span [innerText]="room.checkoutTime | date:'EEEE, d-MMMM-y'"></span>
             </td>
             <td ngClass="whitespace-nowrap border border-slate-700 px-1.5 py-1 text-ellipsis overflow-x-hidden max-w-[160px]"
-                [title]="room.rating"><span [innerText]="room.rating | number:'1.0-0'"></span>
+                [title]="room.rating">
+                <div class="flex">
+                    <svg *ngFor="let item of [1,2,3,4,5]" class="w-3" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 54 52" fill="none">
+                        <path
+                            d="M27.4755 3.84549L27 2.38197L26.5245 3.84549L21.0239 20.7746H3.22359H1.68475L2.92969 21.6791L17.3304 32.1418L11.8298 49.0709L11.3543 50.5344L12.5993 49.6299L27 39.1672L41.4007 49.6299L42.6457 50.5344L42.1702 49.0709L36.6696 32.1418L51.0703 21.6791L52.3153 20.7746H50.7764H32.9761L27.4755 3.84549Z"
+                            [attr.fill]="item <= room.rating ? '#FFAA00' : 'none'" stroke="#FFAA00" />
+                    </svg>
+                </div>
             </td>
             <td ngClass="whitespace-nowrap border border-slate-700 px-1.5 py-1 text-ellipsis overflow-x-hidden max-w-[160px]"
                 [title]="room.roomNumber">

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { RoomList } from '../rooms/rooms';
 
 @Component({
@@ -8,12 +8,11 @@ import { RoomList } from '../rooms/rooms';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class RoomsListComponent implements OnInit, OnChanges {
+export class RoomsListComponent implements OnInit, OnChanges, OnDestroy {
   @Input() rooms: Array<RoomList> = []
   @Input() hotelName: string = ''
 
   @Output() selectedRoom = new EventEmitter<RoomList>()
-
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes['hotelName']?.firstChange) {
@@ -21,10 +20,11 @@ export class RoomsListComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
 
+  ngOnDestroy(): void {
+    console.log('on destroyed is called');
   }
-
 
   selectRoom(room: RoomList) {
     this.selectedRoom.emit(room)
